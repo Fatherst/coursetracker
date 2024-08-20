@@ -1,0 +1,9 @@
+version: "3.7"
+services:
+  bot:
+    build:
+      context: .
+    env_file:
+      - .env
+    container_name: course_tracker
+    command: ["/coursetracker/bot.sh"]
