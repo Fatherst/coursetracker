@@ -24,7 +24,9 @@ class Singleton(type):
 class SingletonBot(telebot.TeleBot, metaclass=Singleton):
     def __init__(self, *args, **kwargs):
         TOKEN = config.BOT_TOKEN
-        state_storage = telebot.storage.StateMemoryStorage()
+        state_storage = telebot.storage.StateRedisStorage(
+            host=config.REDIS_HOST, port=config.REDIS_PORT
+        )
         super().__init__(
             TOKEN,
             state_storage=state_storage,
